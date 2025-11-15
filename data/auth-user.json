@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "data": {
+    "uid": "1589",
+    "name": "thai.d2",
+    "email": "thai.d2@intergreat.com",
+    "full_name": "Thai Do",
+    "roles": [
+      "authenticated",
+      "administrator"
+    ],
+    "picture": "/src/assets/images/avatars/avatar-student-1.jpg"
+  }
+}

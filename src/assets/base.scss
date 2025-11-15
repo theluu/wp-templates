@@ -1,0 +1,560 @@
+/* color palette from <https://github.com/vuejs/theme> */
+@import './mixins.scss';
+
+:root {
+  /* IOT system fonts size*/
+  --font-size-xs: 14px;
+  --font-size-sm: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 24px;
+  --font-size-xl: 36px;
+  --font-size-xxl: 48px;
+  @include mobile {
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 32px;
+    --font-size-xxl: 40px;
+  }
+  
+  /* IOT system colors*/
+  --white: #ffffff;
+  --black: #000000;
+  --plyr-color-main: var(--Color-Verdigris-6);
+  --Color-Verdigris-1: #edf6f9;
+  --Color-Verdigris-2: #d4e7ef;
+  --Color-Verdigris-3: #b1d7e3 ;
+  --Color-Verdigris-4: #8db9d6;
+  --Color-Verdigris-5: #6bafca;
+  --Color-Verdigris-6: #4aa3be;
+  --Color-Verdigris-7: #3f86a2;
+  --Color-Verdigris-8: #356d87;
+  --Color-Verdigris-9: #2a5d6c; 
+  --Color-Verdigris-10: #214655;
+ 
+  --Color-Police-Blue-1: #eaecef;
+  --Color-Police-Blue-2: #ccd2da;
+  --Color-Police-Blue-3: #a3afbc ;
+  --Color-Police-Blue-4: #788a9d;
+  --Color-Police-Blue-5: #50667f;
+  --Color-Police-Blue-6: #294563;
+  --Color-Police-Blue-7: #233b54;
+  --Color-Police-Blue-8: #1d3146;
+  --Color-Police-Blue-9: #172738; 
+  --Color-Police-Blue-10: #121f2d;
+
+  --Color-Apple-1: #f1f9ec;
+  --Color-Apple-2: #ddf1d0;
+  --Color-Apple-3: #c2e6ac ;
+  --Color-Apple-4: #a6da85;
+  --Color-Apple-5: #8bcf60;
+  --Color-Apple-6: #71c43d;
+  --Color-Apple-7: #60a734;
+  --Color-Apple-8: #508b2b;
+  --Color-Apple-9: #407023; 
+  --Color-Apple-10: #33581b;
+
+  --Color-Red-1: #fbe9e7;
+  --Color-Red-2: #f5cac6;
+  --Color-Red-3: #eda098 ;
+  --Color-Red-4: #e57368;
+  --Color-Red-5: #dd493b;
+  --Color-Red-6: #d52110;
+  --Color-Red-7: #b51c0e;
+  --Color-Red-8: #97170b; 
+  --Color-Red-9: #791309; 
+  --Color-Red-10: #600f07;
+
+  --Color-Yellow-1: #fef7e6;
+  --Color-Yellow-2: #fcecc2;
+  --Color-Yellow-3: #f9dd91 ;
+  --Color-Yellow-4: #f6cd5e;
+  --Color-Yellow-5: #f4be2e;
+  --Color-Yellow-6: #f1b000;
+  --Color-Yellow-7: #cd9600;
+  --Color-Yellow-8: #ab7d00; 
+  --Color-Yellow-9: #896400; 
+  --Color-Yellow-10: #6c4f00;
+
+  --Color-Purple-1: #f0edf6;
+  --Color-Purple-2: #dcd4e9;
+  --Color-Purple-3: #c0b2d8 ;
+  --Color-Purple-4: #a28ec6;
+  --Color-Purple-5: #866bb4;
+  --Color-Purple-6: #6c4ba4;
+  --Color-Purple-7: #5c408b; 
+  --Color-Purple-8: #4d3574; 
+  --Color-Purple-9: #3e2b5d; 
+  --Color-Purple-10: #31224a;
+
+  --Color-Blue-1: #e6f6fc;
+  --Color-Blue-2: #c2eaf7;
+  --Color-Blue-3: #91d9f1 ;
+  --Color-Blue-4: #5ec8eb ;
+  --Color-Blue-5: #2eb7e5;
+  --Color-Blue-6: #00a7df; 
+  --Color-Blue-7: #008ebe; 
+  --Color-Blue-8: #00779e; 
+  --Color-Blue-9: #005f7f; 
+  --Color-Blue-10: #004b64;
+
+  --Color-Gray-1: #efeff0;
+  --Color-Gray-2: #d9d9db;
+  --Color-Gray-3: #bbbbbf ;
+  --Color-Gray-4: #9c9ca2 ;
+  --Color-Gray-5: #7e7e86;
+  --Color-Gray-6: #62626b; 
+  --Color-Gray-7: #53535b; 
+  --Color-Gray-8: #46464c; 
+  --Color-Gray-9: #38383d; 
+  --Color-Gray-10: #2c2c30;
+  
+  --box-shadow-section: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  --Text-Heading: var(--Color-Police-Blue-6);
+
+  --vt-c-white: #ffffff;
+  --vt-c-white-soft: #f8f8f8;
+  --vt-c-white-mute: #f2f2f2;
+
+  --vt-c-black: #181818;
+  --vt-c-black-soft: #222222;
+  --vt-c-black-mute: #282828;
+
+  --vt-c-indigo: #2c3e50;
+
+  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
+  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
+  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+
+  --vt-c-text-light-1: var(--vt-c-indigo);
+  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
+  --vt-c-text-dark-1: var(--vt-c-white);
+  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+}
+
+/* semantic color variables for this project */
+:root {
+  --color-background: var(--vt-c-white);
+  --color-background-soft: var(--vt-c-white-soft);
+  --color-background-mute: var(--vt-c-white-mute);
+
+  --color-border: var(--vt-c-divider-light-2);
+  --color-border-hover: var(--vt-c-divider-light-1);
+
+  --color-heading: var(--vt-c-text-light-1);
+  --color-text: var(--vt-c-text-light-1);
+
+  --section-gap: 160px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--vt-c-black);
+    --color-background-soft: var(--vt-c-black-soft);
+    --color-background-mute: var(--vt-c-black-mute);
+
+    --color-border: var(--vt-c-divider-dark-2);
+    --color-border-hover: var(--vt-c-divider-dark-1);
+
+    --color-heading: var(--vt-c-text-dark-1);
+    --color-text: var(--vt-c-text-dark-2);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Begin reset CSS */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+label,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q,
+blockquote {
+  quotes: none;
+}
+textarea {
+  resize: vertical;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+}
+
+button:active {
+  outline: none !important;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  &:hover {
+    text-decoration: none;
+    outline: none !important;
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: none !important;
+  }
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+body {
+  font-size: 1.6em;
+  color: #4F4D59;
+  background-color: #fff;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  line-height: 1.4;
+}
+
+.clearfix {
+  display: inline-block;
+  clear: both;
+}
+
+
+/* start commented backslash hack \*/
+
+* html .clearfix {
+  height: 1%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.clearfix {
+  display: block;
+  clear: both;
+}
+
+.clearfix:before,
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1182px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.row {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+/* End reset CSS */
+
+.sections-wrap {
+  width: 100%;
+  .section {
+    font-size: 18px;
+    min-height: 80vh;
+  }
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.section-bottom {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  margin-top: auto;
+}
+.section-link {
+  margin-top: 6rem;
+  color: var(--Color-Verdigris-6);
+  font-size: 12px;
+  @include mobile {
+    margin-top: 2rem; 
+  }
+}
+section {
+  margin-bottom: 2rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.section-title {
+  font-size: 20px;
+  color: $primary-500;
+  font-weight: bold;
+}
+.section-caption {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--Text-Body-3, #9A9A9A);
+}
+.section-desc {
+  margin-bottom: 6rem;
+  &__intro {
+    margin-bottom: 2rem;
+  }
+  @include mobile {
+    font-size: 16px; 
+    margin-bottom: 2rem;
+  }
+}
+.sm-title {
+  font-size: 28px;
+  color: var(--Color-Gray-6);
+  margin: 6rem 0 2rem;
+  font-weight: bold;
+  @include mobile {
+    font-size: 18px; 
+  }
+
+}
+.section-sub-title {
+  font-size: 56px;
+  font-weight: bold;
+  margin: 6rem 0;
+  color: var(--Color-Gray-6);
+  @include mobile {
+    margin: 1rem 0;
+    font-size: 36px;
+  }
+}
+
+.card-column {
+  display: flex;
+  min-height: 80vh;
+  @include mobile {
+    flex-direction: column; 
+  }
+  &__heading {
+    padding: 6rem;
+    background-color: #F7F9F9;
+    width: 36%;
+    max-width: 500px;
+    flex-shrink: 0;
+    @include mobile {
+      flex-direction: column;
+      width: 100%;
+      padding: 2rem;
+    }
+  }
+  &__content {
+    padding: 6rem;
+    color: var(--Color-Gray-6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    @include mobile {
+      padding: 2rem; 
+    }
+  }
+  &__title {
+    margin-bottom: 6rem;
+    color: var(--Color-Verdigris-6);
+  }
+  &__download {
+    margin-top: 6rem;
+  }
+  &__download-link {
+    font-size: 16px;
+    display: block;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--Color-Gray-6);
+    margin-bottom: 10rem;
+  }
+  &__item-img {
+    max-width: 320px;
+    max-height: 160px;
+    display: flex;
+    margin-top: 3rem;
+  }
+}

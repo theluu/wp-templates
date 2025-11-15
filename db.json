@@ -1,0 +1,14 @@
+{
+  "verify-otp": {
+    "otp": "123456",
+    "phone": ""
+  },
+  "send-otp": {
+    "success": true,
+    "message": "OTP sent"
+  },
+  "register": {
+    "success": true,
+    "user": {}
+  }
+}
