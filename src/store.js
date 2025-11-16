@@ -8,14 +8,7 @@ export const useAuthStore = defineStore('auth', {
       user: { uid: 0 }, // Sử dụng reactive để đảm bảo phản ứng
       languages: {},
       endpoint: {
-        notifications: '',
-        collections: '',
-        my_test: '',
-        my_test_history: '',
-        transaction_history: '',
-        login: '',
-        logout: '',
-        register: '',
+        blockhome: ''
       },
     }),
     loggedin: false,

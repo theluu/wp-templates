@@ -11,7 +11,7 @@ export default {
     createAccount: "Create account",
   },
   footer: {
-    madeWith: "Made with {icon} by the people at InterGreat Education Group",
+    madeWith: "All rights reserved {icon}",
   },
   pagination: {
     items_per_page: "/ page",

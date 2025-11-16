@@ -50,7 +50,6 @@
                   />
                 </div>
               </template>
-              <NoTestsFound v-else />
             </a-tab-pane>
 
             <!-- Tab Academic Test -->
@@ -68,7 +67,6 @@
                   />
                 </div>
               </template>
-              <NoTestsFound v-else />
             </a-tab-pane>
 
             <!-- Tab General Training Test -->
@@ -81,7 +79,6 @@
                   <BlockHomeItem v-for="item in generalItems" :key="item.id" :item="item" />
                 </div>
               </template>
-              <NoTestsFound v-else />
             </a-tab-pane>
           </a-tabs>
         </div>      
@@ -183,12 +180,10 @@
 </template>
 
 <script setup>
-  import { QuestionCircleOutlined } from '@ant-design/icons-vue';
   import { watch, ref, computed } from 'vue';
   import { useRouter } from 'vue-router';
   import axios from 'axios';
   import BlockHomeItem from '@/components/BlockHomeItem.vue';
-  import NoTestsFound from '@/components/NoTestsFound.vue';
   import {useAuthStore} from "@/store.js";
   import { message } from 'ant-design-vue';
   import * as yup from 'yup';

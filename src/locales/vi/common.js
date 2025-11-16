@@ -11,7 +11,7 @@ export default {
     createAccount: "Tạo tài khoản",
   },
   footer: {
-    madeWith: "Được làm bởi {icon} của những con người tại InterGreat Education Group",
+    madeWith: "Mọi quyền được bảo lưu {icon}",
   },
   pagination: {
     items_per_page: "/ trang",

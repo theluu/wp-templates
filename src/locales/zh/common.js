@@ -11,7 +11,7 @@ export default {
     createAccount: "创建账户",
   },
   footer: {
-    madeWith: "由 InterGreat Education Group 的人们用 {icon} 制作",
+    madeWith: "版权所有 {icon}",
   },
   pagination: {
     items_per_page: "/ 页",

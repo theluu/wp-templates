@@ -6,7 +6,7 @@
           <img
             alt="IEG logo"
             class="header__logo"
-            src="@/assets/InterGreat-logo.svg"
+            src="@/assets/logo.svg"
             width="125"
             height="125"
           />
@@ -53,7 +53,6 @@ import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
 import vnFlag from "@/assets/flags/circle-flags/VN.svg";
 import enFlag from "@/assets/flags/circle-flags/GB.svg";
 import cnFlag from "@/assets/flags/circle-flags/CN.svg";
-import { useAuthStore } from "../store";
 
 const { locale } = useI18n();
 const selectedLanguage = ref(locale.value);
