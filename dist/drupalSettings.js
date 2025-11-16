@@ -7,9 +7,9 @@ var drupalSettings = {
   },
   "user": {
     "uid": "1589",
-    "name": "thai.d2",
-    "email": "thai.d2@intergreat.com",
-    "fullName": "Thai Do",
+    "name": "testuser",
+    "email": "testuser@gmail.com",
+    "fullName": "Test User",
     "phone": "0912345678",
     "dialCode": "+84",
     "wallet": {
@@ -45,17 +45,6 @@ var drupalSettings = {
     }
   },
   "endpoint": {
-    notifications: "http://localhost:3000/mock-api/notifications.json",
-    collections: "http://localhost:3000/mock-api/all-collections-data.json",
-    my_test: "http://localhost:3000/mock-api/my_test-data.json",
-    my_test_history: "http://localhost:3000/mock-api/my-test-history.json",
-    transaction_history: "http://localhost:3000/mock-api/transaction-history.json",
-    // Authentication endpoints
-    login: 'http://localhost:3000/mock-api/login',
-    logout: 'http://localhost:3000/mock-api/logout',
-    register: '',
-    consultation: 'http://localhost:3000/mock-api/consultation',
-    validateCode: 'http://localhost:3000/mock-api/validate-code',
-    checkEmail: 'http://localhost:3000/api/check-email'
+    blockhome: "http://localhost:3000/mock-api/blockhome.json"
   }
 }
