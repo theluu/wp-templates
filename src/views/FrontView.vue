@@ -8,107 +8,11 @@
         </div>
         <div class="enter-code__colright">
           <a-input class="iot-input enter-code__input" v-model:value.lazy="value" placeholder="Enter your exam code" />
-          <a-button class="iot-grbt enter-code__next-btn" @click="handleAddTest">{{ Drupal.t('NEXT') }}</a-button>
         </div>
       </div>
       
     </section>
     <div class="container">
-      <section v-if="authStore.loggedin" class="all-collection">
-        <h2 class="section-title all-collection__title">{{ Drupal.t('My Test') }}</h2>
-        <div class="section-caption all-collection__cap">{{ Drupal.t('The list of your IELTS exams after entering the test code') }}</div>
-        <div class="all-collection__items-wrapper">
-          <div class="all-collection__search">
-            <div
-              class="all-collection__exp-more"
-              :class="{ active: showAllMyTests }"
-              @click="toggleMyTests"
-            >
-              {{ showAllMyTests ? 'Collapse' : 'Explore more' }}<i class="fa-light fa-arrow-down"></i>
-            </div>
-            <a-input class="all-collection__search-input"
-              v-model:value="myTestInputSearchValue"
-              placeholder="Search"
-              @search="onMyTestSearch"
-              allow-clear
-            />
-          </div>
-          <a-tabs class="all-collection__tabs" v-model:activeKey="myTestActiveKey">
-            
-            <!-- Tab All -->
-            <a-tab-pane key="1" force-render>
-              <template #tab>
-                <span>All <a-badge :count="filteredMyTestItems.length" /></span>
-              </template>              
-              <template v-if="displayedMyTestItems.length > 0">
-                <div class="all-collection__items-grid">
-                  <CollectionItem 
-                  v-for="item in displayedMyTestItems" 
-                  :key="item.id" 
-                  :item="item"
-                  @openModal="handleOpenModal"
-                  />
-                </div>
-              </template>
-              <NoTestsFound v-else />
-            </a-tab-pane>
-
-            <!-- Tab Inprogress -->
-            <a-tab-pane key="2" force-render>
-              <template #tab>
-                <span>Inprogress <a-badge :count="myTestInprogressItems.length" /></span>
-              </template>
-              <template v-if="myTestInprogressItems.length > 0">
-                <div class="all-collection__items-grid">
-                  <CollectionItem 
-                  v-for="item in myTestInprogressItems" 
-                  :key="item.id" 
-                  :item="item"
-                  @openModal="handleOpenModal"
-                  />
-                </div>
-              </template>
-              <NoTestsFound v-else />
-            </a-tab-pane>
-
-            <!-- Tab Completed -->
-            <a-tab-pane key="3" force-render>
-              <template #tab>
-                <span>Completed <a-badge :count="myTestCompletedItems.length" /></span>
-              </template>
-              <template v-if="myTestCompletedItems.length > 0">
-                <div class="all-collection__items-grid">
-                  <CollectionItem 
-                  v-for="item in myTestCompletedItems" 
-                  :key="item.id" 
-                  :item="item" 
-                  @openModal="handleOpenModal"
-                  />
-                </div>
-              </template>
-              <NoTestsFound v-else />
-            </a-tab-pane>
-
-            <!-- Tab Expired -->
-            <a-tab-pane key="4" force-render>
-              <template #tab>
-                <span>Expired <a-badge :count="myTestExpiredItems.length" /></span>
-              </template>
-              <template v-if="myTestExpiredItems.length > 0">
-                <div class="all-collection__items-grid">
-                  <CollectionItem 
-                  v-for="item in myTestExpiredItems" 
-                  :key="item.id" 
-                  :item="item" 
-                  @openModal="handleOpenModal"
-                  />
-                </div>
-              </template>
-              <NoTestsFound v-else />
-            </a-tab-pane>
-          </a-tabs>
-        </div>      
-      </section>
 
       <section class="all-collection">
         <h2 class="section-title all-collection__title">{{ Drupal.t('All Collections') }}</h2>
@@ -134,12 +38,12 @@
             <!-- Tab All -->
             <a-tab-pane key="1" force-render>
               <template #tab>
-                <span>All <a-badge :count="filteredCollectionItems.length" /></span>
+                <span>All <a-badge :count="filteredBlockHomeItems.length" /></span>
               </template>
-              <template v-if="displayedCollectionItems.length > 0">
+              <template v-if="displayedBlockHomeItems.length > 0">
                 <div class="all-collection__items-grid">
-                  <CollectionItem 
-                  v-for="item in displayedCollectionItems" 
+                  <BlockHomeItem 
+                  v-for="item in displayedBlockHomeItems" 
                   :key="item.id" 
                   :item="item" 
                   @openModal="handleOpenModal"
@@ -156,7 +60,7 @@
               </template>
               <template v-if="academicItems.length > 0">
                 <div class="all-collection__items-grid">
-                  <CollectionItem 
+                  <BlockHomeItem 
                   v-for="item in academicItems" 
                   :key="item.id" 
                   :item="item" 
@@ -174,7 +78,7 @@
               </template>
               <template v-if="generalItems.length > 0">
                 <div class="all-collection__items-grid">
-                  <CollectionItem v-for="item in generalItems" :key="item.id" :item="item" />
+                  <BlockHomeItem v-for="item in generalItems" :key="item.id" :item="item" />
                 </div>
               </template>
               <NoTestsFound v-else />
@@ -214,56 +118,6 @@
       <h3 class="modal-get-consultation__title">{{ Drupal.t('Get a free consultation?') }}</h3>
       <div class="modal-get-consultation__contents">
         <div class="modal-get-consultation__col-left">
-          <Form @submit="handleConsultationSubmit" :validation-schema="consultationSchema">
-            <div class="modal-get-consultation__item">
-              <label for="userContactName" class="modal-get-consultation__label">{{ Drupal.t('Full name') }}<span class="red">*</span></label>          
-              <Field name="userContactName" v-slot="{ field, errors }">
-                <a-input
-                  id="userContactName"
-                  class="modal-get-consultation__input"
-                  v-bind="field"
-                  :placeholder="Drupal.t('Enter your full name')"
-                  :status="errors.length ? 'error' : ''"
-                />
-                <span class="error-message">{{ errors[0] }}</span>
-              </Field>
-            </div>
-            <div class="modal-get-consultation__item">
-              <label for="userContactPhone" class="modal-get-consultation__label">{{ Drupal.t('Phone number') }}<span class="red">*</span></label>
-            
-              <Field name="userContactPhone" v-slot="{ field, errors, meta }">
-                <vue-tel-input
-                  class="modal-get-consultation__input"
-                  :autoFormat="false"
-                  v-bind="{ ...field, ...bindProps }"
-                  @on-input="onPhoneInput"
-                  @blur="meta.setTouched"
-                  :class="{ error: meta.touched && errors.length }"
-                ></vue-tel-input>
-                <span class="error-message" v-if="meta.touched && errors.length">{{ errors[0] }}</span>
-              </Field>
-            </div>
-            <div class="modal-get-consultation__item">
-              <label for="userContactEmail" class="modal-get-consultation__label">{{ Drupal.t('Email') }}</label>
-              <Field name="userContactEmail" v-slot="{ field, errors }">
-                <a-input
-                  id="userContactEmail"
-                  class="modal-get-consultation__input"
-                  v-bind="field"
-                  :placeholder="Drupal.t('ex: abc@gmail.com')"
-                  :status="errors.length ? 'error' : ''"
-                />
-                <span class="error-message">{{ errors[0] }}</span>
-              </Field>
-            </div>
-            <a-button
-              class="modal-get-consultation__submit-btn"
-              type="primary"
-              html-type="submit"
-              :loading="isSubmitting"
-              >{{ Drupal.t('Submit') }}</a-button>
-            
-          </Form>
         </div>
         <div class="modal-get-consultation__or">{{ Drupal.t('Or') }}</div>
         <div class="modal-get-consultation__col-right">
@@ -333,11 +187,10 @@
   import { watch, ref, computed } from 'vue';
   import { useRouter } from 'vue-router';
   import axios from 'axios';
-  import CollectionItem from '@/components/CollectionItem.vue';
+  import BlockHomeItem from '@/components/BlockHomeItem.vue';
   import NoTestsFound from '@/components/NoTestsFound.vue';
   import {useAuthStore} from "@/store.js";
   import { message } from 'ant-design-vue';
-  import { Field, Form } from "vee-validate";
   import * as yup from 'yup';
   
   const authStore = useAuthStore();
@@ -347,15 +200,14 @@
   const inputSearchValue = ref('');
   const activeKey = ref('1'); // Tab mặc định là "All"
   const myTestInputSearchValue = ref('');
-  const myTestActiveKey = ref('1'); // Tab mặc định là "All"
   const value = ref('');
   const modalTakeTestVisible = ref(false);
   const modalConsultationVisible = ref(false);
-  const collectionItems = ref([]);
-  const filteredCollectionItems = ref([]); // Biến lưu trữ danh sách đã lọc
+  const BlockHomeItems = ref([]);
+  const filteredBlockHomeItems = ref([]); // Biến lưu trữ danh sách đã lọc
   const myTestItems = ref([]);
   const filteredMyTestItems = ref([]); // Biến lưu trữ danh sách đã lọc
-  // Biến để lưu urlTest từ CollectionItem
+  // Biến để lưu urlTest từ BlockHomeItem
   const currentUrlTest = ref('');
   const modalHaveCodeVisible = ref(false);
   const userHaveAgent = authStore.config.user.agent || false; // Biến để kiểm tra người dùng có agent hay không
@@ -384,30 +236,6 @@
     wechat: '/public/images/misc/no-image.webp',
   });
 
-  // Hàm lấy URL hình ảnh QR code từ API
-  const fetchQrImages = async () => {
-    try {
-      const endpoint = authStore.config?.endpoint?.qrImages;
-      if (endpoint) {
-        const response = await axios.get(endpoint);
-        if (response.data.success) {
-          qrImages.value = response.data.data;
-        } else {
-          console.error('Failed to fetch QR images:', response.data.error);
-          // Giữ giá trị mặc định (no-image.webp) nếu API trả về lỗi
-        }
-      } else {
-        console.warn('QR images endpoint not defined');
-      }
-    } catch (error) {
-      console.error('Error fetching QR images:', error);
-      // Giữ giá trị mặc định (no-image.webp) nếu có lỗi
-    }
-  };
-
-  // Gọi hàm fetchQrImages khi component được mount
-  fetchQrImages();
-
   // Hàm xử lý khi click vào qr option
   const handleQrOptionClick = (type) => {
     currentQrType.value = type;
@@ -424,23 +252,6 @@
 
   // Biến để kiểm soát trạng thái gửi form
   const isSubmitting = ref(false);
-
-  // Hàm xử lý submit form tư vấn
-  const handleConsultationSubmit = async (values, { resetForm }) => {
-    isSubmitting.value = true;
-    try {
-      // Giả lập gửi dữ liệu tới server
-      await axios.post(authStore.config.endpoint.consultation, values);
-      message.success('Send consultation information successfully!');
-      resetForm();
-      modalConsultationVisible.value = false;
-    } catch (error) {
-      message.error('Submit consultation failed. Please try again later.');
-      console.error('Error submitting consultation:', error);
-    } finally {
-      isSubmitting.value = false;
-    }
-  };
 
   // Cấu hình vue-tel-input
   const bindProps = {
@@ -473,15 +284,9 @@
   const fetchData = async () => {
     try {
       const endpoint = authStore.config?.endpoint || {};
-      const response = await axios.get(endpoint.collections); // Đường dẫn tới file JSON trong public
-      collectionItems.value = response.data.data || [];
-      filteredCollectionItems.value = collectionItems.value; // Khởi tạo danh sách đã lọc
-      // Get my-test items
-      if (authStore.loggedin && endpoint.my_test) {
-        const myTestResponse = await axios.get(endpoint.my_test); // Đường dẫn tới file JSON trong public
-        myTestItems.value = myTestResponse.data.data || [];
-        filteredMyTestItems.value = myTestItems.value; // Khởi tạo danh sách đã lọc
-      }
+      const response = await axios.get(endpoint.blockhome); // Đường dẫn tới file JSON trong public
+      BlockHomeItems.value = response.data.data || [];
+      filteredBlockHomeItems.value = BlockHomeItems.value; // Khởi tạo danh sách đã lọc
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -490,33 +295,6 @@
   // Gọi hàm fetchData khi component được mount
   fetchData();
 
-  // Hàm xử lý thêm bài test mới
-  const handleAddTest = async () => {
-    if (!value.value) {
-      message.error('Please enter a test code.');
-      return;
-    }
-
-    try {
-      const response = await axios.post(authStore.config.endpoint.validateCode, { code: value.value });
-      if (response.data.success) {
-        const { my_test, collections } = response.data.data;
-        // Thêm các item mới vào đầu danh sách hiện tại
-        myTestItems.value = [...my_test.data, ...myTestItems.value];
-        filteredMyTestItems.value = [...my_test.data, ...filteredMyTestItems.value];
-        message.success('Test code is valid. You can now take the test.');
-        value.value = ''; // Reset input
-        modalTakeTestVisible.value = true; // Mở modal
-        currentUrlTest.value = my_test.data[0]?.urlTest || ''; // Cập nhật urlTest
-      } else {
-        message.error(response.data.error || 'Test code is invalid.');
-      }
-    } catch (error) {
-      message.error('Test code validation failed. Please try again later.');
-      console.error('Error validating code:', error);
-    }
-  };
-
 // Computed properties để hiển thị danh sách
 
   // Biến để kiểm soát trạng thái hiển thị
@@ -524,11 +302,11 @@
   const showAllMyTests = ref(false);
 
   // Computed properties để giới hạn số lượng items hiển thị
-  const displayedCollectionItems = computed(() => {
+  const displayedBlockHomeItems = computed(() => {
     if (showAllCollections.value) {
-      return filteredCollectionItems.value;
+      return filteredBlockHomeItems.value;
     }
-    return filteredCollectionItems.value.slice(0, 5);
+    return filteredBlockHomeItems.value.slice(0, 5);
   });
 
   const displayedMyTestItems = computed(() => {
@@ -549,11 +327,11 @@
 
   // Computed properties để lấy dữ liệu theo trạng thái
   const academicItems = computed(() => {
-    return filteredCollectionItems.value.filter(item => item.type === 'academic');
+    return filteredBlockHomeItems.value.filter(item => item.type === 'academic');
   });
 
   const generalItems = computed(() => {
-    return filteredCollectionItems.value.filter(item => item.type === 'general');
+    return filteredBlockHomeItems.value.filter(item => item.type === 'general');
   });
 
   const myTestInprogressItems = computed(() => {
@@ -571,10 +349,10 @@
   // Hàm xử lý tìm kiếm cho all-collection
   const onSearch = (value) => {
     if (!value) {
-      filteredCollectionItems.value = collectionItems.value; // Reset về danh sách gốc
+      filteredBlockHomeItems.value = BlockHomeItems.value; // Reset về danh sách gốc
       return;
     }
-    filteredCollectionItems.value = collectionItems.value.filter(item =>
+    filteredBlockHomeItems.value = BlockHomeItems.value.filter(item =>
       item.title.toLowerCase().includes(value.toLowerCase()) ||
       (item.caption && item.caption.toLowerCase().includes(value.toLowerCase()))
     );
@@ -592,7 +370,7 @@
     );
   };
 
-  // Hàm xử lý mở modal từ CollectionItem
+  // Hàm xử lý mở modal từ BlockHomeItem
   const handleOpenModal = ({ urlTest }) => {
     if (userHaveAgent) {
       modalHaveCodeVisible.value = true; // Hiển thị modal tư vấn nếu người dùng có agent

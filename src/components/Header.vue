@@ -41,9 +41,6 @@
             </li>
           </ul>
         </div>
-        <template v-if="showUserInfo">
-          <UserInfo />
-        </template>
       </div>
     </div>
   </header>
@@ -57,34 +54,14 @@ import vnFlag from "@/assets/flags/circle-flags/VN.svg";
 import enFlag from "@/assets/flags/circle-flags/GB.svg";
 import cnFlag from "@/assets/flags/circle-flags/CN.svg";
 import { useAuthStore } from "../store";
-import UserInfo from "@/components/UserInfo.vue";
 
 const { locale } = useI18n();
 const selectedLanguage = ref(locale.value);
 const route = useRoute();
 const router = useRouter();
-const showUserInfo = ref(false);
 
 const hiddenRoutes = ["/login", "/sign-up","/trouble-login"];
 
-// Hàm kiểm tra route
-const updateUserInfoVisibility = (path) => {
-  // console.log("Checking route path:", path);
-  showUserInfo.value = !hiddenRoutes.includes(path);
-};
-
-// Đợi router sẵn sàng trước khi kiểm tra route
-router.isReady().then(() => {
-  updateUserInfoVisibility(route.path);
-});
-
-// Theo dõi thay đổi route
-watch(
-  () => route.path,
-  (newPath) => {
-    updateUserInfoVisibility(newPath);
-  }
-);
 
 const languages = [
   { code: "vi", name: "Tiếng Việt", flag: vnFlag },
