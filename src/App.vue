@@ -3,7 +3,6 @@ import { RouterLink, RouterView } from "vue-router";
 
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-import Notification from "./components/Notification.vue";
 </script>
 <template>
   <a-config-provider
@@ -16,7 +15,6 @@ import Notification from "./components/Notification.vue";
   >
   </a-config-provider>
   <Header />
-  <Notification />
   <RouterView />
   <Footer />
 </template>
